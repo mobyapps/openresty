@@ -24,6 +24,8 @@ zlib1g-dev                      \
 libpcre3-dev                    \
 libgeoip-dev                    \
 libevent-dev                    \
+libxml2-dev                     \
+libxslt1-dev                    \
 socat                           \
 \
 && groupadd group7 \
@@ -61,29 +63,27 @@ socat                           \
 --with-pcre \
 --with-pcre-jit \
 --with-http_geoip_module=dynamic \
---with-http_image_filter_module=dynamic \
 --with-stream_geoip_module=dynamic \
 --with-http_xslt_module=dynamic \
---with-ipv6 \
 \
 && make && make install \
 \
-&& mkdir /usr/local/openresty/vhosts \
-&& mkdir /usr/local/openresty/vconfs \
-&& mkdir /usr/local/openresty/vlogs \
-&& mkdir /usr/local/openresty/vcerts \
+&& mkdir /usr/local/openresty/nginx/vhosts \
+&& mkdir /usr/local/openresty/nginx/vconfs \
+&& mkdir /usr/local/openresty/nginx/vlogs \
+&& mkdir /usr/local/openresty/nginx/vcerts \
 \
 && cd /usr/local/src \
-&& yes | cp ./nginx.conf  /usr/local/nginx/conf/nginx.conf \
+&& yes | cp ./nginx.conf  /usr/local/openresty/nginx/conf/nginx.conf \
 \
 && chown -R user7:group7 /usr/local/openresty \
-&& /usr/local/openresty/sbin/nginx -t \
-&& /usr/local/openresty/sbin/nginx \
+&& /usr/local/openresty/nginx/sbin/nginx -t \
+&& /usr/local/openresty/nginx/sbin/nginx \
 && sleep 3s \
-&& /usr/local/openresty/sbin/nginx -s stop \
+&& /usr/local/openresty/nginx/sbin/nginx -s stop \
 \
 && echo '' >> ~/.bashrc \
-&& echo 'export PATH="$PATH:/usr/local/openresty/sbin"' >> ~/.bashrc \
+&& echo 'export PATH="$PATH:/usr/local/openresty/nginx/sbin"' >> ~/.bashrc \
 \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
