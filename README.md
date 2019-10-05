@@ -11,7 +11,7 @@ services:
   nginx:
     image: frontbear/fastnginx:1.15.3.0
     volumes:
-      - vhosts:/usr/local/nginx/vhosts
+      - vhosts:/usr/local/openresty/nginx/vhosts
     ports:
       - "80:80"
       - "443:443"

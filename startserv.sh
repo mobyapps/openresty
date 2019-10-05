@@ -2,8 +2,8 @@
 
 set -eux
 
-chown -R user7:group7    /usr/local/nginx
+chown -R user7:group7    /usr/local/openresty
 
-/usr/local/nginx/sbin/nginx
+/usr/local/openresty/nginx/sbin/nginx
 
-chown -R user7:group7    /usr/local/nginx
+chown -R user7:group7    /usr/local/openresty
