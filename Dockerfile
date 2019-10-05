@@ -18,6 +18,7 @@ RUN set -eux \
 && apt-get -y upgrade           \
 && apt-get -y install build-essential \
 wget                            \
+perl                            \
 curl                            \
 libssl-dev                      \
 zlib1g-dev                      \
@@ -83,7 +84,7 @@ socat                           \
 && /usr/local/openresty/nginx/sbin/nginx -s stop \
 \
 && echo '' >> ~/.bashrc \
-&& echo 'export PATH="$PATH:/usr/local/openresty/nginx/sbin"' >> ~/.bashrc \
+&& echo 'export PATH="$PATH:/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin"' >> ~/.bashrc \
 \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
